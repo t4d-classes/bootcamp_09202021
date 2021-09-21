@@ -1,7 +1,7 @@
 export const CarViewRow = (props) => {
 
   return (
-    <tr key={props.car.id}>
+    <tr>
       <td>{props.car.id}</td>
       <td>{props.car.make}</td>
       <td>{props.car.model}</td>

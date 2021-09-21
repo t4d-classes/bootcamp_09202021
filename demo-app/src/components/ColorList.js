@@ -1,10 +1,13 @@
-export const ColorList = (props) => {
+import { colorsPropType } from '../prop-types/colors';
 
-  return (
-    <ul>
-      {props.colors.map(color => <li key={color.id}>
-        {color.name}</li>)}
-    </ul>
-  );
+export const ColorList = ({ colors }) =>
+  <ul>{colors.map(({ id, name }) =>
+    <li key={id}>{name}</li>)}</ul>;
 
+ColorList.defaultProps = {
+  colors: [],
+};
+
+ColorList.propsTypes = {
+  colors: colorsPropType.isRequired,
 };
