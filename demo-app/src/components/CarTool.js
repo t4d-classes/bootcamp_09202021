@@ -1,22 +1,11 @@
 import { useState } from "react";
 
+import { ToolHeader } from "./ToolHeader";
+import { CarTable } from "./CarTable";
+
 export const CarTool = (props) => {
 
-  // const useState = (initialValue) => {
-
-  //   let currentData = initialValue;
-
-  //   const updateFn = (newValue) => {
-
-  //     if (newValue !== currentData) {
-  //       currentData = newValue;
-  //       triggerRerender();
-  //     }
-
-  //   };
-
-  //   return [ currentData, updateFn ];
-  // };
+  const [ cars, setCars ] = useState([ ...props.cars ]);
 
   const [
     carForm,
@@ -36,37 +25,26 @@ export const CarTool = (props) => {
     });
   };
 
-  console.log(carForm);
+  const addCar = () => {
+
+    setCars([
+      ...cars,
+      { ...carForm, id: Math.max(...cars.map(c => c.id), 0) + 1 },
+    ]);
+
+    setCarForm({
+      make: '',
+      model: '',
+      year: 1900,
+      color: '',
+      price: 0,      
+    });
+  };
 
   return (
     <>
-      <header>
-        <h1>Car Tool</h1>
-      </header>
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Make</th>
-            <th>Model</th>
-            <th>Year</th>
-            <th>Car</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.cars.map((car) => (
-            <tr key={car.id}>
-              <td>{car.id}</td>
-              <td>{car.make}</td>
-              <td>{car.model}</td>
-              <td>{car.year}</td>
-              <td>{car.color}</td>
-              <td>{car.price}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <ToolHeader headerText="Car Tool" />
+      <CarTable cars={cars} />
       <form>
         <div>
           <label htmlFor="make-input">Make</label>
@@ -118,7 +96,7 @@ export const CarTool = (props) => {
             name="price"
           />
         </div>
-        <button type="button">
+        <button type="button" onClick={addCar}>
           Add Car
         </button>
       </form>
