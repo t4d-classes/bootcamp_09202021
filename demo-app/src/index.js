@@ -31,6 +31,14 @@ const carList = [
   },
 ];
 
+// ReactFragment
+//  - ColorTool Component
+//   - State Linked List
+//     - 0: colors[]
+//     - 1: colorForm
+//  - CarTool Component
+//  - CarTool Component
+
 render(<>
   <ColorTool colors={colorList} />
   <CarTool cars={carList} />

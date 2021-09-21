@@ -2,6 +2,22 @@ import { useState } from "react";
 
 export const CarTool = (props) => {
 
+  // const useState = (initialValue) => {
+
+  //   let currentData = initialValue;
+
+  //   const updateFn = (newValue) => {
+
+  //     if (newValue !== currentData) {
+  //       currentData = newValue;
+  //       triggerRerender();
+  //     }
+
+  //   };
+
+  //   return [ currentData, updateFn ];
+  // };
+
   const [
     carForm,
     setCarForm,
