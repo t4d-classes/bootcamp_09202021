@@ -4,6 +4,7 @@ import { CarViewRow } from './CarViewRow';
 import { carsPropType } from '../prop-types/cars';
 
 export const CarTable = ({ cars, onDeleteCar: deleteCar }) => {
+
   return (
     <table>
       <thead>
