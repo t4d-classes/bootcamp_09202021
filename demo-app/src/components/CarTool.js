@@ -6,48 +6,28 @@ import { CarTable } from "./CarTable";
 import { CarForm } from "./CarForm";
 import { ToolFooter } from "./ToolFooter";
 
+import { useList } from '../hooks/useList';
+
 export const CarTool = ({ cars: initialCars }) => {
 
   // persisted, permanent data, the data for which we wrote the application
-  const [ cars, setCars ] = useState([ ...initialCars ]);
+  const [ cars, appendCar, replaceCar, , removeCar ] = useList([ ...initialCars ]);
 
   // temporary data, describing the UI in the moment, it does not last forever
   const [ editCarId, setEditCarId ] = useState(-1);
 
   const addCar = (car) => {
-    setCars([
-      ...cars,
-      {
-        ...car,
-        id: Math.max(...cars.map(c => c.id), 0) + 1,
-      },
-    ]);
+    appendCar(car);
     setEditCarId(-1);
   };
 
-  // replace
   const putCar = (car) => {
-    const newCars = [ ...cars ];
-    const carIndex = newCars.findIndex(c => c.id === car.id);
-    newCars[carIndex] = car;
-    setCars(newCars);
-    // setEditCarId(-1);
-  };
-
-  // update
-  const patchCar = (car) => {
-    const newCars = [ ...cars ];
-    const carIndex = newCars.findIndex(c => c.id === car.id);
-    newCars[carIndex] = {
-      ...newCars[carIndex],
-      ...car
-    };
-    setCars(newCars);
+    replaceCar(car);
     setEditCarId(-1);
-  }
+  };
 
   const deleteCar = (carId) => {
-    setCars(cars.filter(c => c.id !== carId));
+    removeCar(carId);
     setEditCarId(-1);
   };
 
