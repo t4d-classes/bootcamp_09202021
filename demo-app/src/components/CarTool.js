@@ -8,7 +8,11 @@ import { ToolFooter } from "./ToolFooter";
 
 export const CarTool = ({ cars: initialCars }) => {
 
+  // persisted, permanent data, the data for which we wrote the application
   const [ cars, setCars ] = useState([ ...initialCars ]);
+
+  // temporary data, describing the UI in the moment, it does not last forever
+  const [ editCarId, setEditCarId ] = useState(-1);
 
   const addCar = (car) => {
     setCars([
@@ -27,7 +31,8 @@ export const CarTool = ({ cars: initialCars }) => {
   return (
     <>
       <ToolHeader headerText="Car Tool" />
-      <CarTable cars={cars} onDeleteCar={deleteCar} />
+      <CarTable cars={cars} editCarId={editCarId}
+        onEditCar={setEditCarId} onDeleteCar={deleteCar} />
       <CarForm buttonText="Add Car" onSubmitCar={addCar} />
       <ToolFooter companyName="A Cool Company, Inc." />
     </>
