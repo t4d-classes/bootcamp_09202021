@@ -1,6 +1,9 @@
-import { CarViewRow } from './CarViewRow';
+import PropTypes from 'prop-types';
 
-export const CarTable = (props) => {
+import { CarViewRow } from './CarViewRow';
+import { carsPropType } from '../prop-types/cars';
+
+export const CarTable = ({ cars, onDeleteCar: deleteCar }) => {
   return (
     <table>
       <thead>
@@ -14,8 +17,18 @@ export const CarTable = (props) => {
         </tr>
       </thead>
       <tbody>
-        {props.cars.map((car) => <CarViewRow key={car.id} car={car} />)}
+        {cars.map((car) =>
+          <CarViewRow key={car.id} car={car} onDeleteCar={deleteCar} />)}
       </tbody>
     </table>
   );
-}
+};
+
+CarTable.defaultProps = {
+  cars: [],
+};
+
+CarTable.propTypes = {
+  cars: carsPropType.isRequired,
+  onDeleteCar: PropTypes.func.isRequired,
+};

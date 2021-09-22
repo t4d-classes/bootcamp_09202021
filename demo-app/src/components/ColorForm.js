@@ -54,4 +54,5 @@ ColorForm.defaultProps = {
 
 ColorForm.propTypes = {
   buttonText: PropTypes.string.isRequired,
+  onSubmitColor: PropTypes.func.isRequired,
 };
