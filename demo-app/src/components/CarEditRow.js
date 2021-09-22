@@ -3,7 +3,11 @@ import { useState } from "react";
 
 import { carPropType  } from '../prop-types/cars';
 
-export const CarEditRow = ({ car, onSaveCar: saveCar, onCancelCar: cancelCar }) => {
+export const CarEditRow = ({
+  car,
+  onSaveCar,
+  onCancelCar: cancelCar,
+}) => {
 
   const [
     carForm,
@@ -19,7 +23,16 @@ export const CarEditRow = ({ car, onSaveCar: saveCar, onCancelCar: cancelCar }) 
   const change = e => {
     setCarForm({
       ...carForm,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.type === 'number'
+        ? parseInt(e.target.value, 10)
+        : e.target.value,
+    });
+  };
+
+  const saveCar = () => {
+    onSaveCar({
+      ...carForm,
+      id: car.id,
     });
   };
 
@@ -40,7 +53,7 @@ export const CarEditRow = ({ car, onSaveCar: saveCar, onCancelCar: cancelCar }) 
           name="model"
         /></td>
       <td><input
-          type="text"
+          type="number"
           value={carForm.year}
           onChange={change}
           name="year"
@@ -52,14 +65,14 @@ export const CarEditRow = ({ car, onSaveCar: saveCar, onCancelCar: cancelCar }) 
           name="color"
         /></td>
       <td><input
-          type="text"
+          type="number"
           value={carForm.price}
           onChange={change}
           name="price"
         /></td>
       <td>
-        <button type="button" onClick={() => null}>Save</button>
-        <button type="button" onClick={() => null}>Cancel</button>
+        <button type="button" onClick={saveCar}>Save</button>
+        <button type="button" onClick={cancelCar}>Cancel</button>
       </td>
     </tr>
   );
