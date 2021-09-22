@@ -29,35 +29,30 @@ export const CarEditRow = ({ car, onSaveCar: saveCar, onCancelCar: cancelCar }) 
       <td>{car.id}</td>
       <td><input
           type="text"
-          id="make-input"
           value={carForm.make}
           onChange={change}
           name="make"
         /></td>
       <td><input
           type="text"
-          id="model-input"
           value={carForm.model}
           onChange={change}
           name="model"
         /></td>
       <td><input
           type="text"
-          id="year-input"
           value={carForm.year}
           onChange={change}
           name="year"
         /></td>
       <td><input
           type="text"
-          id="color-input"
           value={carForm.color}
           onChange={change}
           name="color"
         /></td>
       <td><input
           type="text"
-          id="price-input"
           value={carForm.price}
           onChange={change}
           name="price"
