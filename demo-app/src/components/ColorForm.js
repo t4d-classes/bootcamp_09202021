@@ -1,36 +1,24 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
+import { useForm } from '../hooks/useForm';
+
 export const ColorForm = ({ buttonText, onSubmitColor }) => {
 
   const [
-    colorForm, // state data
-    setColorForm, // function to update the state data and re-render
-  ] = useState({
+    colorForm,
+    change,
+    resetColorForm,
+  ] = useForm({
     name: '', hexcode: '',
   } /* initial value of the state on the first render */);
-
-  const change = e => {
-
-    // set a new color form state object, and re-render
-    setColorForm({
-      // spread operator to copy the properties from the original color form to the new color form
-      ...colorForm,
-      [e.target.name]: e.target.value,
-      // name: e.target.value
-    } /* new object literal, so we have a new object reference saying the state change */);
-
-  };
 
   const submitColor = () => {
 
     onSubmitColor({ ...colorForm });
 
-    setColorForm({
-      name: '', hexcode: '',
-    });
-
-  }
+    resetColorForm();
+  };
 
   return (
     <form>

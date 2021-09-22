@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import { useState } from "react";
 
 import { carPropType  } from '../prop-types/cars';
-
+import { useForm } from '../hooks/useForm';
+ 
 export const CarEditRow = ({
   car,
   onSaveCar,
@@ -11,23 +12,14 @@ export const CarEditRow = ({
 
   const [
     carForm,
-    setCarForm,
-  ] = useState({
+    change,
+  ] = useForm({
     make: car.make,
     model: car.model,
     year: car.year,
     color: car.color,
     price: car.price,
   });
-
-  const change = e => {
-    setCarForm({
-      ...carForm,
-      [e.target.name]: e.target.type === 'number'
-        ? parseInt(e.target.value, 10)
-        : e.target.value,
-    });
-  };
 
   const saveCar = () => {
     onSaveCar({

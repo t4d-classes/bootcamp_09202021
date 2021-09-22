@@ -25,13 +25,26 @@ export const CarTool = ({ cars: initialCars }) => {
     setEditCarId(-1);
   };
 
-  const saveCar = (car) => {
+  // replace
+  const putCar = (car) => {
     const newCars = [ ...cars ];
     const carIndex = newCars.findIndex(c => c.id === car.id);
     newCars[carIndex] = car;
     setCars(newCars);
-    setEditCarId(-1);
+    // setEditCarId(-1);
   };
+
+  // update
+  const patchCar = (car) => {
+    const newCars = [ ...cars ];
+    const carIndex = newCars.findIndex(c => c.id === car.id);
+    newCars[carIndex] = {
+      ...newCars[carIndex],
+      ...car
+    };
+    setCars(newCars);
+    setEditCarId(-1);
+  }
 
   const deleteCar = (carId) => {
     setCars(cars.filter(c => c.id !== carId));
@@ -44,12 +57,14 @@ export const CarTool = ({ cars: initialCars }) => {
 
   const editCar = setEditCarId;
 
+  console.log('re-render');
+
   return (
     <>
       <ToolHeader headerText="Car Tool" />
       <CarTable cars={cars} editCarId={editCarId}
         onEditCar={editCar} onDeleteCar={deleteCar}
-        onSaveCar={saveCar} onCancelCar={cancelCar} />
+        onSaveCar={putCar} onCancelCar={cancelCar} />
       <CarForm buttonText="Add Car" onSubmitCar={addCar} />
       <ToolFooter companyName="A Cool Company, Inc." />
     </>
