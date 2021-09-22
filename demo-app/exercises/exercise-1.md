@@ -1,6 +1,6 @@
 # Exercise 1
 
-## Steps
+## Requirements
 
 1. Create a new component named Car Tool in a new file in the `components` folder. In the car tool component, produce the following output for the DOM tree. The name of the new component should be `CarTool`.
 

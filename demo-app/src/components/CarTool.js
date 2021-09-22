@@ -4,6 +4,7 @@ import { carsPropType } from "../prop-types/cars";
 import { ToolHeader } from "./ToolHeader";
 import { CarTable } from "./CarTable";
 import { CarForm } from "./CarForm";
+import { ToolFooter } from "./ToolFooter";
 
 export const CarTool = ({ cars: initialCars }) => {
 
@@ -28,6 +29,7 @@ export const CarTool = ({ cars: initialCars }) => {
       <ToolHeader headerText="Car Tool" />
       <CarTable cars={cars} onDeleteCar={deleteCar} />
       <CarForm buttonText="Add Car" onSubmitCar={addCar} />
+      <ToolFooter companyName="A Cool Company, Inc." />
     </>
   );
 };

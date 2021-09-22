@@ -4,6 +4,7 @@ import { colorsPropType } from '../prop-types/colors';
 import { ToolHeader } from './ToolHeader';
 import { ColorList } from './ColorList';
 import { ColorForm } from './ColorForm';
+import { ToolFooter } from './ToolFooter';
 
 export const ColorTool = ({ colors: initialColors }) => {
 
@@ -27,6 +28,7 @@ export const ColorTool = ({ colors: initialColors }) => {
       <ToolHeader headerText="Color Tool" />
       <ColorList colors={colors} />
       <ColorForm buttonText="Add Color" onSubmitColor={addColor} />
+      <ToolFooter companyName="A Cool Company, Inc." />
     </>
   );
 
