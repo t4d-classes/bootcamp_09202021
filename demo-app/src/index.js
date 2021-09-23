@@ -1,4 +1,5 @@
 import { render } from 'react-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import { ColorTool } from './components/ColorTool';
 import { CarTool } from './components/CarTool';
@@ -31,17 +32,22 @@ const carList = [
   },
 ];
 
-// ReactFragment
-//  - ColorTool Component
-//   - State Linked List
-//     - 0: colors[]
-//     - 1: colorForm
-//  - CarTool Component
-//  - CarTool Component
 
 render(<>
-  <ColorTool colors={colorList} />
-  <CarTool cars={carList} />
+  <Router>
+    <nav>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/color-tool">Color Tool</Link></li>
+        <li><Link to="/car-tool">Car Tool</Link></li>
+      </ul>
+    </nav>
+    <Switch>
+      <Route path="/" exact><h2>Home</h2></Route>
+      <Route path="/color-tool"><ColorTool colors={colorList} /></Route>
+      <Route path="/car-tool"><CarTool cars={carList} /></Route>
+    </Switch>
+  </Router>
 </>, document.querySelector('#root'));
 
 
