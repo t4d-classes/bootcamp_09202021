@@ -5,6 +5,7 @@ import './App.css';
 
 import { ColorTool } from './components/ColorTool';
 import { CarTool } from './components/CarTool';
+import { CarToolStoreProvider } from './contexts/carToolStoreContext';
 
 const colorList = [
   { id: 1, name: 'blue', hexcode: '0000ff' },
@@ -51,7 +52,11 @@ export function App() {
         <Switch>
           <Route path="/" exact><h2>Home</h2></Route>
           <Route path="/color-tool"><ColorTool colors={colorList} /></Route>
-          <Route path="/car-tool"><CarTool cars={carList} /></Route>
+          <Route path="/car-tool">
+            <CarToolStoreProvider cars={carList}>
+              <CarTool /> {/* children */}
+            </CarToolStoreProvider>
+          </Route>
         </Switch>
       </main>
       <aside id="sidebar">
