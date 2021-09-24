@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const CalcTool = ({ result, onAdd: add, onSubtract: subtract }) => {
+export const CalcTool = ({ result, history, onAdd: add, onSubtract: subtract }) => {
 
   const [ numInput, setNumInput ] = useState(0);
 
@@ -15,6 +15,11 @@ export const CalcTool = ({ result, onAdd: add, onSubtract: subtract }) => {
           <button type="button" onClick={() => subtract(numInput)}>-</button>
         </fieldset>
       </form>
+      <ul>
+        {history.map(entry => <li key={entry.id}>
+          {entry.id} {entry.opName} {entry.opValue}
+        </li>)}
+      </ul>
     </>
   );
 
