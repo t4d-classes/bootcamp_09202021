@@ -1,8 +1,11 @@
+import { Provider } from 'react-redux';
 import { Switch, Route, Link } from 'react-router-dom';
-
 
 import './App.css';
 
+import { calcToolStore } from './stores/calcToolStore';
+
+import { CalcToolContainer } from '../containers/CalcToolContainer';
 import { ColorTool } from './components/ColorTool';
 import { CarTool } from './components/CarTool';
 import { CarToolStoreProvider } from './contexts/carToolStoreContext';
@@ -46,6 +49,7 @@ export function App() {
           <li className="menuitem"><Link to="/">Home</Link></li>
           <li className="menuitem"><Link to="/color-tool">Color Tool</Link></li>
           <li className="menuitem"><Link to="/car-tool">Car Tool</Link></li>
+          <li className="menuitem"><Link to="/calc-tool">Calc Tool</Link></li>
         </ul>
       </nav>
       <main id="content">
@@ -56,6 +60,11 @@ export function App() {
             <CarToolStoreProvider cars={carList}>
               <CarTool /> {/* children */}
             </CarToolStoreProvider>
+          </Route>
+          <Route path="/calc-tool">
+            <Provider store={calcToolStore}>
+              <CalcToolContainer />
+            </Provider>
           </Route>
         </Switch>
       </main>
