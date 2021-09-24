@@ -5,7 +5,7 @@ import './App.css';
 
 import { calcToolStore } from './stores/calcToolStore';
 
-import { CalcToolContainer } from '../containers/CalcToolContainer';
+import { CalcToolContainer } from './containers/CalcToolContainer';
 import { ColorTool } from './components/ColorTool';
 import { CarTool } from './components/CarTool';
 import { CarToolStoreProvider } from './contexts/carToolStoreContext';
