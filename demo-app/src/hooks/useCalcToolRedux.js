@@ -9,32 +9,44 @@ import {
 
 export const useCalcToolRedux = () => {
 
-  const result = useSelector(state => {
+  const [result, counts] = useSelector(state => {
   
     let result = 0;
+
+    let opCounts = {
+      [ADD_ACTION]: 0,
+      [SUBTRACT_ACTION]: 0,
+      [MULTIPLY_ACTION]: 0,
+      [DIVIDE_ACTION]: 0,
+    };
 
     state.history.forEach(entry => {
       switch(entry.opName) {
         case ADD_ACTION:
           result = result + entry.opValue;
+          opCounts[ADD_ACTION]++;
           break;
         case SUBTRACT_ACTION:
           result = result - entry.opValue;
+          opCounts[SUBTRACT_ACTION]++;
           break;
         case MULTIPLY_ACTION:
           result = result * entry.opValue;
+          opCounts[MULTIPLY_ACTION]++;
           break;
         case DIVIDE_ACTION:
           result = result / entry.opValue;
+          opCounts[DIVIDE_ACTION]++;
           break;
         default:
           break;
       }
     });
 
-    return result;
+    return [result, opCounts];
   
   });
+
   const history = useSelector(state => state.history);
   const errorMessage = useSelector(state => {
     if (state.errorMessage) {
@@ -57,6 +69,7 @@ export const useCalcToolRedux = () => {
     result,
     history,
     errorMessage,
+    counts,
     ...actions,
   };
 

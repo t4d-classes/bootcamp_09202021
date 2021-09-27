@@ -5,7 +5,7 @@ import { useCalcTool } from '../hooks/useCalcTool';
 export const CalcTool = () => {
 
   const {
-    result, history, errorMessage,
+    result, history, errorMessage, counts,
     onAdd: add, onSubtract: subtract,
     onMultiply: multiply, onDivide: divide,
     onClear: clear, onDeleteHistoryEntry: deleteHistoryEntry
@@ -35,6 +35,24 @@ export const CalcTool = () => {
             deleteHistoryEntry(entry.id)}>X</button>
         </li>)}
       </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>Add</th>
+            <th>Subtract</th>
+            <th>Multiply</th>
+            <th>Divide</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{counts.ADD}</td>
+            <td>{counts.SUBTRACT}</td>
+            <td>{counts.MULTIPLY}</td>
+            <td>{counts.DIVIDE}</td>
+          </tr>
+        </tbody>
+      </table>
     </>
   );
 
