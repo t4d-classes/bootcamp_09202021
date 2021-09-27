@@ -1,10 +1,15 @@
 import { useState } from 'react';
 
-export const CalcTool = ({
-  result, history, errorMessage,
-  onAdd: add, onSubtract: subtract,
-  onMultiply: multiply, onDivide: divide,
-  onClear: clear, onDeleteHistoryEntry: deleteHistoryEntry }) => {
+import { useCalcTool } from '../hooks/useCalcTool';
+
+export const CalcTool = () => {
+
+  const {
+    result, history, errorMessage,
+    onAdd: add, onSubtract: subtract,
+    onMultiply: multiply, onDivide: divide,
+    onClear: clear, onDeleteHistoryEntry: deleteHistoryEntry
+  }= useCalcTool();
 
   const [ numInput, setNumInput ] = useState(0);
 
