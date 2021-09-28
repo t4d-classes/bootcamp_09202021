@@ -9,19 +9,21 @@ import { ColorForm } from './ColorForm';
 import { ToolFooter } from './ToolFooter';
 
 export const ColorTool = ({
-  colors, toggleSortButtonText,
+  colors, toggleSortButtonText, isLoading,
   onRefreshColors: refreshColors,
   onAddColor: addColor,
   onDeleteColor: deleteColor,
   onSortColors: sortColors,
 }) => {
 
-  useEffect(() => {
+  useEffect(function refreshColorsEffect() {
+    console.log("calling refresh colors");
     refreshColors();
-  }, []);
+  }, [refreshColors]);
 
   return (
     <>
+      {isLoading && <div>Loading...</div>}
       <ToolHeader headerText="Color Tool" />
       <ColorList colors={colors}
         toggleSortButtonText={toggleSortButtonText}
