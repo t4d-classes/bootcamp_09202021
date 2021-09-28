@@ -72,7 +72,7 @@
 
 
     </script>
-    <script>
+    <!-- <script>
 
       // setTimeout(() => {
       //   console.log("a");
@@ -92,27 +92,214 @@
       //     }, delay());
       // }, delay());
 
-      function allDone() {
-        console.log('all done');
-      }
+      // function allDone() {
+      //   console.log('all done');
+      // }
 
-      setTimeout(() => {
-        console.log('a');
-      }, delay());
+      // let counter = 0;
 
-      setTimeout(() => {
-        console.log('b');
-      }, delay());
+      // counter++;
+      // setTimeout(() => {
+      //   console.log('a');
+      //   counter--;
+      //   if (counter === 0) {
+      //     allDone();
+      //   }
+      // }, delay());
 
-      setTimeout(() => {
-        console.log('c');
-      }, delay());
+      // counter++;
+      // setTimeout(() => {
+      //   console.log('b');
+      //   counter--;
+      //   if (counter === 0) {
+      //     allDone();
+      //   }
+      // }, delay());
+
+      // counter++;
+      // setTimeout(() => {
+      //   console.log('c');
+      //   counter--;
+      //   if (counter === 0) {
+      //     allDone();
+      //   }
+      // }, delay());
 
       // Exercise
 
       // Rule 1: All three calls to `setTimeout` must occur in the same task
       // Rule 2: After all three callbacks have been invoked as different tasks, call the `allDone` function
       // Rule 3: You may not hard code the delay values.
+
+      // class Promise {
+
+      //   constructor(fn) {
+
+      //     this._status = 'pending';
+      //     this._result = null;
+
+      //     this._resolveFns = [];
+
+      //     this._rejectFns = [];
+
+      //     const resolveFn = (result) => {
+      //       this._status = 'fulfilled';
+      //       this._result = result;
+      //       this._resolveFns.forEach(fn => fn(result));
+      //     };
+
+      //     const rejectFn = (result) => {
+      //       this._rejectFns.forEach(fn => fn(result));
+      //     };
+
+      //     fn(resolveFn, rejectFn);
+      //   }
+
+      //   // resolves
+      //   then(fn) {
+      //     if (this._status === 'fulfilled') {
+      //       fn(this._result);
+      //     } else {
+      //       this._resolveFns.push(fn);
+      //     }
+      //   }
+
+      //   // rejects
+      //   catch(fn) {
+      //     this._rejectFns.push(fn);
+      //   }
+      // }
+
+
+      
+      // const p = new Promise((resolve, reject) => {
+
+      //   setTimeout(() => {
+      //     resolve('a');
+      //   }, delay());
+
+      // });
+
+      // p.then(result => {
+
+      // })
+
+      // p.then(result => {
+      //   console.log(result);
+
+      //   setTimeout(() => {
+
+      //     p.then(result => {
+
+      //     })
+
+      //   }, 3000);
+
+      // });
+
+      // console.log('made it here...');
+
+
+      const doA = () => {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve('a');
+          }, delay());
+        });
+      }; 
+
+      const doB = () => {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve('b');
+          }, delay());
+        });
+      }; 
+
+      const doC = () => {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve('c');
+          }, delay());
+        });
+      }; 
+
+      doA()
+        .then(result => {
+          console.log(result);
+          return doB();
+        })
+        .then(result => {
+          console.log(result);
+          return doC();
+        })
+        .then(result => {
+          console.log(result);
+        });
+
+      Promise.all([ doA(), doB(), doC() ]).then(results => {
+        console.log(results);
+        console.log('all done');
+      });
+
+      const doWork = async () => {
+
+        let result = await doA();
+        console.log(result);
+
+        result = await doB();
+        console.log(result);
+
+        result = await doC();
+        console.log(result);
+
+      };
+
+      doWork();
+
+      Promise.race([ doA(), doB(), doC() ]).then(result => console.log(result + ' won the race'));
+
+
+    </script> -->
+    <script>
+
+      // const getAllColors = async () => {
+
+      //   const res = await fetch('http://localhost:3060/colors');
+      //   const colors = await res.json();
+
+      //   return colors;
+
+      // };
+
+      // getAllColors().then(colors => console.log(colors));
+
+      // const getOneColor = async (colorId) => {
+      //   const res = await fetch('http://localhost:3060/colors/' + encodeURIComponent(colorId));
+      //   const color = await res.json();
+
+      //   return color;
+      // };
+
+      // getOneColor(1).then(color => console.log(color));
+
+      // const appendColor = async (newColor) => {
+
+      //   const res = await fetch('http://localhost:3060/colors', {
+      //     method: 'POST',
+      //     headers: { 'Content-Type': 'application/json'},
+      //     body: JSON.stringify(newColor),
+      //   });
+      //   const color = await res.json();
+
+      //   return color;
+
+      // };
+
+      // appendColor({ name: 'purple', hexcode: 'ff00ff' }).then(color => console.log(color));
+
+
+
 
     </script>
   </body>

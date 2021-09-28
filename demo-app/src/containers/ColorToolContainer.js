@@ -6,7 +6,8 @@ import { ColorTool } from '../components/ColorTool';
 import { sortedItemsSelector } from "../selectors/sortedItemsSelector";
 import { toggleSortButtonTextSelector } from '../selectors/toggleSortButtonTextSelector';
 import {
-  createAppendColorAction, createRemoveColorAction, createSortColorsAction,
+  refreshColors, createAppendColorAction,
+  createRemoveColorAction, createSortColorsAction,
 } from "../actions/colorToolActions";
 
 export const ColorToolContainer = () => {
@@ -16,10 +17,12 @@ export const ColorToolContainer = () => {
   const toggleSortButtonText = useSelector(toggleSortButtonTextSelector);  
 
   const actions = bindActionCreators({
+    onRefreshColors: refreshColors,
     onAddColor: createAppendColorAction,
     onDeleteColor: createRemoveColorAction,
     onSortColors: createSortColorsAction,
   }, useDispatch());
 
-  return <ColorTool colors={colors} toggleSortButtonText={toggleSortButtonText} {...actions} />;
+  return <ColorTool colors={colors}
+    toggleSortButtonText={toggleSortButtonText} {...actions} />;
 };
