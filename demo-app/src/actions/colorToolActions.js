@@ -4,4 +4,4 @@ export const SORT_COLORS_ACTION = 'SORT_COLORS';
 
 export const createAppendColorAction = color => ({ type: APPEND_COLOR_ACTION, color });
 export const createRemoveColorAction = colorId => ({ type: REMOVE_COLOR_ACTION, colorId });
-export const createSortColorsAction = (col) => ({ type: SORT_COLORS_ACTION, col });
+export const createSortColorsAction = () => ({ type: SORT_COLORS_ACTION });

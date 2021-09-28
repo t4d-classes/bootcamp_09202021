@@ -71,7 +71,48 @@
       // doSomething(() => doIt('this is fun'));
 
 
+    </script>
+    <script>
 
+      // setTimeout(() => {
+      //   console.log("a");
+      // }, 0);
+
+      // console.log("b");
+
+      const delay = () => Math.floor(Math.random() *1000) + 500;
+
+      // setTimeout(() => {
+      //     console.log('a');
+      //     setTimeout(() => {
+      //         console.log('b');
+      //         setTimeout(() => {
+      //             console.log('c');
+      //         }, delay());
+      //     }, delay());
+      // }, delay());
+
+      function allDone() {
+        console.log('all done');
+      }
+
+      setTimeout(() => {
+        console.log('a');
+      }, delay());
+
+      setTimeout(() => {
+        console.log('b');
+      }, delay());
+
+      setTimeout(() => {
+        console.log('c');
+      }, delay());
+
+      // Exercise
+
+      // Rule 1: All three calls to `setTimeout` must occur in the same task
+      // Rule 2: After all three callbacks have been invoked as different tasks, call the `allDone` function
+      // Rule 3: You may not hard code the delay values.
 
     </script>
   </body>

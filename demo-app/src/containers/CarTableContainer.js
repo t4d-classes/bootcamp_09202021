@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { CarTable } from '../components/CarTable';
 
+import { sortedItemsSelector } from "../selectors/sortedItemsSelector";
 import {
   createReplaceCarAction, createRemoveCarAction, createEditCarAction,
   createCancelCarAction, createSortCarsAction
@@ -10,26 +11,10 @@ import {
 
 export const CarTableContainer = () => {
 
-  const cars = useSelector(state => {
+  const cars = useSelector(sortedItemsSelector("cars", "carsSort"));
 
-    const { cars } = state;
-    const { col: sortCol, dir: sortDir }= state.carsSort;
-
-    return [ ...cars ].sort((a,b) => {
-      if (a[sortCol] === b[sortCol]) {
-        return 0;
-      } else {
-        if (a[sortCol] < b[sortCol]) {
-          return sortDir === 'asc' ? -1 : 1;
-        } else {
-          return sortDir === 'desc' ? -1 : 1;
-        }
-      }
-    })
-  });
-
-  const editCarId = useSelector(state => state.editCarId);
-  const carsSort = useSelector(state => state.carsSort);
+  const editCarId = useSelector(({ editCarId }) => editCarId);
+  const carsSort = useSelector(s => s.carsSort);
 
   const actions = bindActionCreators({
     onSaveCar: createReplaceCarAction,
