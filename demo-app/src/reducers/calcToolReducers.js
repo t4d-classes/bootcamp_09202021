@@ -4,7 +4,7 @@ import {
   ADD_ACTION, SUBTRACT_ACTION, MULTIPLY_ACTION,
   DIVIDE_ACTION, CLEAR_ACTION, DELETE_HISTORY_ENTRY_ACTION,
   SET_ERROR_MESSAGE_ACTION,
-} from "../actions/calcActions";
+} from "../actions/calcToolActions";
 
 // Reducer: Pure Function
 // 1. The only data input comes from parameters

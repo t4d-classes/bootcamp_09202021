@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   createAddAction, createSubtractAction, createMultiplyAction,
   createDivideAction, createClearAction, createDeleteHistoryEntryAction
-} from "../actions/calcActions";
+} from "../actions/calcToolActions";
 
 import { CalcTool } from "../components/CalcTool";
 

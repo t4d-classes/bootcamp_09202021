@@ -4,39 +4,12 @@ import { Switch, Route, Link } from 'react-router-dom';
 import './App.css';
 
 import { calcToolStore } from './stores/calcToolStore';
+import { carToolStore } from './stores/carToolStore';
+import { colorToolStore } from './stores/colorToolStore';
 
 import { CalcTool } from './components/CalcTool';
-import { ColorTool } from './components/ColorTool';
+import { ColorToolContainer } from './containers/ColorToolContainer';
 import { CarTool } from './components/CarTool';
-import { CarToolStoreProvider } from './contexts/carToolStoreContext';
-
-const colorList = [
-  { id: 1, name: 'blue', hexcode: '0000ff' },
-  { id: 2, name: 'red', hexcode: 'ff0000' },
-  { id: 3, name: 'black', hexcode: '000000' },
-  { id: 4, name: 'purple', hexcode: 'ff00ff' },
-  { id: 5, name: 'white', hexcode: 'ffffff' },
-  { id: 6, name: 'green', hexcode: '00ff00' }
-];
-
-const carList = [
-  {
-    id: 1,
-    make: "Ford",
-    model: "Fusion Hybrid",
-    year: 2021,
-    color: "blue",
-    price: 45000,
-  },
-  {
-    id: 2,
-    make: "Tesla",
-    model: "S",
-    year: 2019,
-    color: "white",
-    price: 120000,
-  },
-];
 
 export function App() {
   return (
@@ -55,11 +28,15 @@ export function App() {
       <main id="content">
         <Switch>
           <Route path="/" exact><h2>Home</h2></Route>
-          <Route path="/color-tool"><ColorTool colors={colorList} /></Route>
+          <Route path="/color-tool">
+            <Provider store={colorToolStore}>
+              <ColorToolContainer />
+            </Provider>
+          </Route>
           <Route path="/car-tool">
-            <CarToolStoreProvider cars={carList}>
-              <CarTool /> {/* children */}
-            </CarToolStoreProvider>
+            <Provider store={carToolStore}>
+              <CarTool />
+            </Provider>
           </Route>
           <Route path="/calc-tool">
             <Provider store={calcToolStore}>

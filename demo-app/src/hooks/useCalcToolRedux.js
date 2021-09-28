@@ -5,7 +5,7 @@ import {
   createAddAction, createSubtractAction, createMultiplyAction,
   createDivideAction, createClearAction, createDeleteHistoryEntryAction,
   ADD_ACTION, SUBTRACT_ACTION, MULTIPLY_ACTION, DIVIDE_ACTION,
-} from "../actions/calcActions";
+} from "../actions/calcToolActions";
 
 export const useCalcToolRedux = () => {
 

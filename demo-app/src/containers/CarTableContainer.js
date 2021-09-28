@@ -1,38 +1,46 @@
-import { useCarToolStoreContext } from "../contexts/carToolStoreContext";
+import { bindActionCreators } from "redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { CarTable } from '../components/CarTable';
 
-// Container Component - connects a presentational subtree to the
-//                       application store
-//                     - generally not reusable
+import {
+  createReplaceCarAction, createRemoveCarAction, createEditCarAction,
+  createCancelCarAction, createSortCarsAction
+} from "../actions/carToolActions";
+
 export const CarTableContainer = () => {
 
-  const {
-    cars,
-    editCarId, 
-    sortInfo, 
-    editCar,
-    removeCar,
-    replaceCar,
-    cancelCar,
-    sortOnColumn,
-  } = useCarToolStoreContext();
+  const cars = useSelector(state => {
 
-  const saveCar = (car) => {
-    replaceCar(car);
-    cancelCar();
-  };
+    const { cars } = state;
+    const { col: sortCol, dir: sortDir }= state.carsSort;
 
-  const deleteCar = (carId) => {
-    removeCar(carId);
-    cancelCar();
-  };
+    return [ ...cars ].sort((a,b) => {
+      if (a[sortCol] === b[sortCol]) {
+        return 0;
+      } else {
+        if (a[sortCol] < b[sortCol]) {
+          return sortDir === 'asc' ? -1 : 1;
+        } else {
+          return sortDir === 'desc' ? -1 : 1;
+        }
+      }
+    })
+  });
+
+  const editCarId = useSelector(state => state.editCarId);
+  const carsSort = useSelector(state => state.carsSort);
+
+  const actions = bindActionCreators({
+    onSaveCar: createReplaceCarAction,
+    onDeleteCar: createRemoveCarAction,
+    onEditCar: createEditCarAction,
+    onCancelCar: createCancelCarAction,
+    onSortCars: createSortCarsAction,
+  }, useDispatch());
 
   // Car Table - presentational component, very reusable, only uses props
-  return <CarTable cars={cars} editCarId={editCarId}
-  carsSort={sortInfo} onSortCars={sortOnColumn}
-  onEditCar={editCar} onDeleteCar={deleteCar}
-  onSaveCar={saveCar} onCancelCar={cancelCar} />;
+  return <CarTable cars={cars} editCarId={editCarId} carsSort={carsSort} {...actions} />;
 
 
 };

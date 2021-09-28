@@ -1,17 +1,19 @@
-import { useCarToolStoreContext } from "../contexts/carToolStoreContext";
+import { bindActionCreators } from "redux";
+import { useDispatch } from "react-redux";
 
 import { CarForm } from '../components/CarForm';
 
+import {
+  createAppendCarAction
+} from "../actions/carToolActions";
+
 export const CarFormContainer = () => {
 
-  const {
-    appendCar, cancelCar
-  } = useCarToolStoreContext();
+  const actions = bindActionCreators({
+    onSubmitCar: createAppendCarAction,
+  }, useDispatch());
 
-  const addCar = (car) => {
-    appendCar(car);
-    cancelCar();
-  };
+  return <CarForm buttonText="Add Car" {...actions} />;
 
-  return <CarForm buttonText="Add Car" onSubmitCar={addCar} />;
+
 };
