@@ -121,15 +121,6 @@
       "category": "Mystery",
       "price": 10.99,
       "quantity": 45
-    },
-    {
-      "id": 7,
-      "title": "History of People",
-      "isbn": "111222AAAG",
-      "authorId": "2",
-      "category": "Historical",
-      "price": 15.99,
-      "quantity": 55
     }
   ]
 }
