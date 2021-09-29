@@ -1,20 +1,18 @@
 
 export const REFRESH_COLORS_REQUEST_ACTION = 'REFRESH_COLORS_REQUEST';
 export const REFRESH_COLORS_DONE_ACTION = 'REFRESH_COLORS_DONE';
-
 export const APPEND_COLOR_REQUEST_ACTION = 'APPEND_COLOR_REQUEST';
 export const APPEND_COLOR_DONE_ACTION = 'APPEND_COLOR_DONE';
-
-export const REMOVE_COLOR_ACTION = 'REMOVE_COLOR';
+export const REMOVE_COLOR_REQUEST_ACTION = 'REMOVE_COLOR_REQUEST';
+export const REMOVE_COLOR_DONE_ACTION = 'REMOVE_COLOR_DONE';
 export const SORT_COLORS_ACTION = 'SORT_COLORS';
 
 export const createRefreshColorsRequestAction = () => ({ type: REFRESH_COLORS_REQUEST_ACTION });
 export const createRefreshColorsDoneAction = (colors) => ({ type: REFRESH_COLORS_DONE_ACTION, colors });
-
 export const createAppendColorRequestAction = newColor => ({ type: APPEND_COLOR_REQUEST_ACTION, color: newColor });
 export const createAppendColorDoneAction = appendedColor => ({ type: APPEND_COLOR_DONE_ACTION, color: appendedColor });
-
-export const createRemoveColorAction = colorId => ({ type: REMOVE_COLOR_ACTION, colorId });
+export const createRemoveColorRequestAction = colorId => ({ type: REMOVE_COLOR_REQUEST_ACTION, colorId });
+export const createRemoveColorDoneAction = () => ({ type: REMOVE_COLOR_DONE_ACTION });
 export const createSortColorsAction = () => ({ type: SORT_COLORS_ACTION });
 
 export const refreshColors = () => {
@@ -47,11 +45,25 @@ export const appendColor = (newColor) => {
 
     const appendedCar = await res.json();
 
-    dispatch(createAppendColorRequestAction(appendedCar));
-
+    dispatch(createAppendColorDoneAction(appendedCar));
     dispatch(refreshColors());
+  };
 
+};
 
+export const removeColor = (colorId) => {
+
+  return async dispatch => {
+
+    dispatch(createRemoveColorRequestAction(colorId));
+
+    await fetch('http://localhost:3060/colors/' + encodeURIComponent(colorId),
+      {
+        method: 'DELETE',
+      });
+
+    dispatch(createRemoveColorDoneAction());
+    dispatch(refreshColors());
   };
 
 };

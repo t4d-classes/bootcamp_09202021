@@ -1,6 +1,3 @@
-import { useEffect } from 'react';
-
-
 import { colorsPropType } from '../prop-types/colors';
 
 import { ToolHeader } from './ToolHeader';
@@ -10,16 +7,10 @@ import { ToolFooter } from './ToolFooter';
 
 export const ColorTool = ({
   colors, toggleSortButtonText, isLoading,
-  onRefreshColors: refreshColors,
   onAddColor: addColor,
   onDeleteColor: deleteColor,
   onSortColors: sortColors,
 }) => {
-
-  useEffect(function refreshColorsEffect() {
-    console.log("calling refresh colors");
-    refreshColors();
-  }, [refreshColors]);
 
   return (
     <>

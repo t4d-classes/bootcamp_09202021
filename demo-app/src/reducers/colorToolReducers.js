@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
 import {
-  REFRESH_COLORS_DONE_ACTION, REMOVE_COLOR_ACTION, SORT_COLORS_ACTION,
+  REFRESH_COLORS_DONE_ACTION, SORT_COLORS_ACTION,
 } from "../actions/colorToolActions";
 
 
@@ -10,8 +10,6 @@ export const colorsReducer = (colors = [], action) => {
   switch (action.type) {
     case REFRESH_COLORS_DONE_ACTION:
       return action.colors;
-    case REMOVE_COLOR_ACTION:
-      return colors.filter(c => c.id !== action.colorId);
     default:
       return colors;
   }
@@ -44,8 +42,6 @@ export const isLoadingReducer = (isLoading = false, action) => {
   }
 
   return isLoading;
-
-
 };
 
 

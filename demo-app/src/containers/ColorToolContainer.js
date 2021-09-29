@@ -1,16 +1,13 @@
 import { bindActionCreators } from "redux";
 import { useSelector, useDispatch } from "react-redux";
-import { useMemo } from 'react';
-
-import { ColorTool } from '../components/ColorTool';
+import { useMemo, useEffect } from 'react';
 
 import { sortedItemsSelector } from "../selectors/sortedItemsSelector";
 import { toggleSortButtonTextSelector } from '../selectors/toggleSortButtonTextSelector';
 import {
-  refreshColors, appendColor,
-  createRemoveColorAction, createSortColorsAction,
+  refreshColors, appendColor, removeColor, createSortColorsAction,
 } from "../actions/colorToolActions";
-
+import { ColorTool } from '../components/ColorTool';
 
 
 export const ColorToolContainer = () => {
@@ -24,9 +21,11 @@ export const ColorToolContainer = () => {
   const actions = useMemo(() => bindActionCreators({
     onRefreshColors: refreshColors,
     onAddColor: appendColor,
-    onDeleteColor: createRemoveColorAction,
+    onDeleteColor: removeColor,
     onSortColors: createSortColorsAction,
   }, dispatch), [dispatch]);
+
+  useEffect(() => dispatch(refreshColors()), [dispatch]);
 
   return <ColorTool colors={colors} isLoading={isLoading}
     toggleSortButtonText={toggleSortButtonText} {...actions} />;

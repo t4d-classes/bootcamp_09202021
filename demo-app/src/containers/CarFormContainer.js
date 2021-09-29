@@ -1,19 +1,20 @@
 import { bindActionCreators } from "redux";
 import { useDispatch } from "react-redux";
+import { useMemo } from 'react';
 
 import { CarForm } from '../components/CarForm';
 
 import {
-  createAppendCarAction
+  appendCar
 } from "../actions/carToolActions";
 
 export const CarFormContainer = () => {
 
-  const actions = bindActionCreators({
-    onSubmitCar: createAppendCarAction,
-  }, useDispatch());
+  const dispatch = useDispatch();
+
+  const actions = useMemo(() => bindActionCreators({
+    onSubmitCar: appendCar,
+  }, dispatch), [dispatch]);
 
   return <CarForm buttonText="Add Car" {...actions} />;
-
-
 };
