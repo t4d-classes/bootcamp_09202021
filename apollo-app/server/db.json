@@ -59,6 +59,12 @@
       "lastName": "a",
       "phoneNumber": "a",
       "id": 10
+    },
+    {
+      "firstName": "Bob",
+      "lastName": "Smith",
+      "phoneNumber": "123-123-1234",
+      "id": 11
     }
   ],
   "books": [

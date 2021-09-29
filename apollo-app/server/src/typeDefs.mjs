@@ -11,6 +11,10 @@ export const typeDefs = gql`
     books: [Book]
   }
 
+  type Mutation {
+    appendAuthor(author: NewAuthor): Author
+  }
+
   type Person {
     id: ID
     firstName: String
@@ -24,6 +28,12 @@ export const typeDefs = gql`
     lastName: String
     phoneNumber: String
     books: [Book]
+  }
+
+  input NewAuthor {
+    firstName: String
+    lastName: String
+    phoneNumber: String    
   }
 
   type Book {
