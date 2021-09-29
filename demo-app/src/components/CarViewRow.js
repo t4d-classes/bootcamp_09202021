@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
 
-
 import { carPropType  } from '../prop-types/cars';
 
 export const CarViewRow = ({ car, onEditCar: editCar, onDeleteCar: deleteCar }) => {
-  
 
   return (
     <tr>

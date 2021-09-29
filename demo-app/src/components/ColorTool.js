@@ -1,5 +1,6 @@
-import { colorsPropType } from '../prop-types/colors';
+import PropTypes from 'prop-types';
 
+import { colorsPropType } from '../prop-types/colors';
 import { ToolHeader } from './ToolHeader';
 import { ColorList } from './ColorList';
 import { ColorForm } from './ColorForm';
@@ -29,8 +30,14 @@ export const ColorTool = ({
 
 ColorTool.defaultProps = {
   colors: [],
+  isLoading: false,
 };
 
 ColorTool.propTypes = {
   colors: colorsPropType.isRequired,
+  toggleSortButtonText: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  onAddColor: PropTypes.func.isRequired,
+  onDeleteColor: PropTypes.func.isRequired,
+  onSortColors: PropTypes.func.isRequired,
 };

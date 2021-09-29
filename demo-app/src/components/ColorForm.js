@@ -10,7 +10,7 @@ export const ColorForm = ({ buttonText, onSubmitColor }) => {
     resetColorForm,
   ] = useForm({
     name: '', hexcode: '',
-  } /* initial value of the state on the first render */);
+  });
 
   const submitColor = () => {
 
