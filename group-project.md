@@ -75,7 +75,7 @@ The application must support 2 of 3 workflows. To switch between work flows, ple
 
 ## Conditions of Victory
 
-- Three of the three workflows are completed.
+- Two of the three workflows are completed.
 
 - There are no errors in the console.
 
