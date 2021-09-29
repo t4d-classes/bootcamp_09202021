@@ -1,8 +1,14 @@
 import { useQuery, gql } from "@apollo/client";
 
+import { AuthorList } from './components/AuthorList';
+
 const APP_QUERY = gql`
   query App {
-      message
+    authors {
+      id
+      firstName
+      lastName
+    }
   }
 `;
 
@@ -14,7 +20,7 @@ function App() {
 
   return (
     <div>
-        {data.message}
+      <AuthorList authors={data.authors} />
     </div>
   );
 }

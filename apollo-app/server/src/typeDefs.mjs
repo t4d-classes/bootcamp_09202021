@@ -7,6 +7,8 @@ export const typeDefs = gql`
     colors: [String]
     person: Person
     authors: [Author]
+    author(authorId: ID): Author
+    books: [Book]
   }
 
   type Person {
@@ -21,6 +23,18 @@ export const typeDefs = gql`
     firstName: String
     lastName: String
     phoneNumber: String
+    books: [Book]
+  }
+
+  type Book {
+    id: ID
+    isbn: String
+    title: String
+    authorId: ID
+    category: String
+    price: Float
+    quantity: Int
+    author: Author
   }
 `;
 
